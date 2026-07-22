@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 5大實用指令 + 使用Tips</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;display=swap');
+        
+        body {
+            font-family: "Noto Sans TC", "Inter", system-ui, -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+        }
+        
+        .card {
+            transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
+                       box-shadow 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        }
+        
+        .instruction-number {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+            color: white;
+            width: 2rem;
+            height: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 9999px;
+            font-weight: 700;
+            font-size: 1rem;
+            box-shadow: 0 10px 15px -3px rgb(99 102 241 / 0.3);
+        }
+        
+        .prompt-box {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        }
+        
+        .tip-badge {
+            background-color: #fef3c7;
+            color: #92400e;
+            font-size: 0.7rem;
+            padding: 0.1rem 0.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 py-8">
+    <div class="max-w-screen-lg mx-auto px-5">
+        
+        <!-- Simple Header -->
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold tracking-tight">AI 5大實用指令</h1>
+            <p class="text-slate-600 mt-2">加咗呢啲指令，回答質素可以提升好多倍</p>
+        </div>
+
+        <!-- 5 Instructions -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+            
+            <!-- 01 -->
+            <div class="card bg-white border border-slate-200 rounded-3xl p-5 flex flex-col h-full">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="instruction-number text-sm">01</div>
+                    <div class="tip-badge">最推薦新手</div>
+                </div>
+                <h3 class="font-bold text-lg mb-1.5">逐步思考法<br><span class="text-sm font-semibold text-indigo-600">Chain-of-Thought</span></h3>
+                <p class="text-xs text-slate-600 mb-3 flex-1">強迫模型一步一步思考， dramatically 提升邏輯性同準確度。</p>
+                
+                <div class="mb-2">
+                    <div class="text-[10px] font-semibold text-slate-500 mb-1">隱藏指令：</div>
+                    <div class="prompt-box text-xs p-2.5 rounded-2xl text-slate-700 leading-snug">
+                        請一步一步詳細思考呢個問題，並喺最終答案之前先展示你嘅思考過程。
+                    </div>
+                </div>
+                
+                <button onclick="copyPrompt(this, '請一步一步詳細思考呢個問題，並喺最終答案之前先展示你嘅思考過程。')" 
+                        class="mt-auto w-full flex items-center justify-center gap-x-2 text-xs py-2 bg-slate-900 hover:bg-black transition-colors text-white rounded-2xl font-medium">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>複製指令</span>
+                </button>
+            </div>
+
+            <!-- 02 -->
+            <div class="card bg-white border border-slate-200 rounded-3xl p-5 flex flex-col h-full">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="instruction-number text-sm">02</div>
+                    <div class="tip-badge">效果最強</div>
+                </div>
+                <h3 class="font-bold text-lg mb-1.5">專家角色法<br><span class="text-sm font-semibold text-indigo-600">Expert Persona</span></h3>
+                <p class="text-xs text-slate-600 mb-3 flex-1">令模型進入專家模式，調用更深層知識，回答更有權威性。</p>
+                
+                <div class="mb-2">
+                    <div class="text-[10px] font-semibold text-slate-500 mb-1">隱藏指令：</div>
+                    <div class="prompt-box text-xs p-2.5 rounded-2xl text-slate-700 leading-snug">
+                        你而家係一位擁有 15 年以上經驗嘅世界級專家，請用最專業、最深入嘅角度去分析同回答。
+                    </div>
+                </div>
+                
+                <button onclick="copyPrompt(this, '你而家係一位擁有 15 年以上經驗嘅世界級專家，請用最專業、最深入嘅角度去分析同回答。')" 
+                        class="mt-auto w-full flex items-center justify-center gap-x-2 text-xs py-2 bg-slate-900 hover:bg-black transition-colors text-white rounded-2xl font-medium">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>複製指令</span>
+                </button>
+            </div>
+
+            <!-- 03 -->
+            <div class="card bg-white border border-slate-200 rounded-3xl p-5 flex flex-col h-full">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="instruction-number text-sm">03</div>
+                </div>
+                <h3 class="font-bold text-lg mb-1.5">自我反思法<br><span class="text-sm font-semibold text-indigo-600">Self-Critique</span></h3>
+                <p class="text-xs text-slate-600 mb-3 flex-1">要求模型喺輸出前先批判自己嘅回答，減少錯誤同幻覺。</p>
+                
+                <div class="mb-2">
+                    <div class="text-[10px] font-semibold text-slate-500 mb-1">隱藏指令：</div>
+                    <div class="prompt-box text-xs p-2.5 rounded-2xl text-slate-700 leading-snug">
+                        喺你提供最終答案之前，請先對自己嘅回答做一次批判性審查，檢查有冇唔準確或者可以補充嘅地方。
+                    </div>
+                </div>
+                
+                <button onclick="copyPrompt(this, '喺你提供最終答案之前，請先對自己嘅回答做一次批判性審查，檢查有冇唔準確或者可以補充嘅地方。')" 
+                        class="mt-auto w-full flex items-center justify-center gap-x-2 text-xs py-2 bg-slate-900 hover:bg-black transition-colors text-white rounded-2xl font-medium">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>複製指令</span>
+                </button>
+            </div>
+
+            <!-- 04 -->
+            <div class="card bg-white border border-slate-200 rounded-3xl p-5 flex flex-col h-full">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="instruction-number text-sm">04</div>
+                    <div class="tip-badge">實用性最高</div>
+                </div>
+                <h3 class="font-bold text-lg mb-1.5">結構化輸出法<br><span class="text-sm font-semibold text-indigo-600">Structured Output</span></h3>
+                <p class="text-xs text-slate-600 mb-3 flex-1">強制模型用清晰結構呈現答案（標題、列表、表格），方便閱讀。</p>
+                
+                <div class="mb-2">
+                    <div class="text-[10px] font-semibold text-slate-500 mb-1">隱藏指令：</div>
+                    <div class="prompt-box text-xs p-2.5 rounded-2xl text-slate-700 leading-snug">
+                        請用清晰嘅結構組織答案，例如使用標題、小標題、 bullet points 同表格嚟呈現。
+                    </div>
+                </div>
+                
+                <button onclick="copyPrompt(this, '請用清晰嘅結構組織答案，例如使用標題、小標題、 bullet points 同表格嚟呈現。')" 
+                        class="mt-auto w-full flex items-center justify-center gap-x-2 text-xs py-2 bg-slate-900 hover:bg-black transition-colors text-white rounded-2xl font-medium">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>複製指令</span>
+                </button>
+            </div>
+
+            <!-- 05 -->
+            <div class="card bg-white border border-slate-200 rounded-3xl p-5 flex flex-col h-full">
+                <div class="flex items-start justify-between mb-3">
+                    <div class="instruction-number text-sm">05</div>
+                </div>
+                <h3 class="font-bold text-lg mb-1.5">多角度分析法<br><span class="text-sm font-semibold text-indigo-600">Multi-Perspective</span></h3>
+                <p class="text-xs text-slate-600 mb-3 flex-1">從正反兩面、不同角度思考，令結論更加全面。</p>
+                
+                <div class="mb-2">
+                    <div class="text-[10px] font-semibold text-slate-500 mb-1">隱藏指令：</div>
+                    <div class="prompt-box text-xs p-2.5 rounded-2xl text-slate-700 leading-snug">
+                        請從多個唔同角度分析呢個問題，包括正反兩面嘅觀點，並喺結論中平衡討論。
+                    </div>
+                </div>
+                
+                <button onclick="copyPrompt(this, '請從多個唔同角度分析呢個問題，包括正反兩面嘅觀點，並喺結論中平衡討論。')" 
+                        class="mt-auto w-full flex items-center justify-center gap-x-2 text-xs py-2 bg-slate-900 hover:bg-black transition-colors text-white rounded-2xl font-medium">
+                    <i class="fa-regular fa-copy"></i>
+                    <span>複製指令</span>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Tips Section -->
+        <div class="bg-white border border-slate-200 rounded-3xl p-6 md:p-7">
+            <h2 class="font-bold text-xl mb-4 flex items-center gap-x-2">
+                <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                <span>使用Tips</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+                <div class="flex gap-3">
+                    <div class="mt-0.5"><i class="fa-solid fa-layer-group text-indigo-500"></i></div>
+                    <div>
+                        <div class="font-semibold mb-0.5">可以組合使用</div>
+                        <div class="text-xs text-slate-600">例如同時用「專家角色 + 逐步思考 + 結構化輸出」，效果會更加強大。</div>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="mt-0.5"><i class="fa-solid fa-magic text-indigo-500"></i></div>
+                    <div>
+                        <div class="font-semibold mb-0.5">根據情境微調</div>
+                        <div class="text-xs text-slate-600">寫文案可以加「用吸引人又有說服力嘅語氣」；技術問題就強調「嚴謹同準確」。</div>
+                    </div>
+                </div>
+                <div class="flex gap-3">
+                    <div class="mt-0.5"><i class="fa-solid fa-sync text-indigo-500"></i></div>
+                    <div>
+                        <div class="font-semibold mb-0.5">迭代優化</div>
+                        <div class="text-xs text-slate-600">如果第一次回答唔夠好，可以再加一句：「請再深入思考第 3 點，並提供更多實例。」</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <p class="text-center text-xs text-slate-400 mt-6">直接複製上面嘅指令，加喺你嘅問題前面或後面即可</p>
+    </div>
+
+    <script>
+        function copyPrompt(element, text) {
+            // More compatible copy method for Safari + local files
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            textArea.style.top = '0';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+
+            try {
+                const successful = document.execCommand('copy');
+                const originalHTML = element.innerHTML;
+                
+                if (successful) {
+                    element.innerHTML = `<i class="fa-solid fa-check"></i> <span>已複製！</span>`;
+                    element.style.backgroundColor = '#166534';
+                    
+                    setTimeout(() => {
+                        element.innerHTML = originalHTML;
+                        element.style.backgroundColor = '';
+                    }, 1600);
+                } else {
+                    element.innerHTML = `<i class="fa-solid fa-times"></i> <span>複製失敗</span>`;
+                    setTimeout(() => {
+                        element.innerHTML = originalHTML;
+                    }, 1200);
+                }
+            } catch (err) {
+                element.innerHTML = `<i class="fa-solid fa-times"></i> <span>複製失敗</span>`;
+                setTimeout(() => {
+                    element.innerHTML = originalHTML;
+                }, 1200);
+            }
+
+            document.body.removeChild(textArea);
+        }
+    </script>
+</body>
+</html>
